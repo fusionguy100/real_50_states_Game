@@ -23,10 +23,7 @@ while True:
     answer_state = screen.textinput(title=f"{current_answers}/50", prompt="What's another state name?").title()
 
     if answer_state == "Exit":
-        missing_states = []
-        for state in states:
-            if state not in current_guesses:
-                missing_states.append(state)
+        missing_states = [state for state in states if state not in current_guesses]
         new_data = pandas.DataFrame(missing_states)
         new_data.to_csv("states_to_learn.csv")
         break
